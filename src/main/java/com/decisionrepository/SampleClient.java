@@ -1,7 +1,7 @@
 package com.decisionrepository;
 
 import java.io.IOException;
-import nl.rug.search.odr.ws.connection.WebServiceFacade;
+import nl.rug.search.odr.ws.connection.AuthorizedWebServiceFacade;
 import nl.rug.search.odr.ws.dto.DecisionStateDTO;
 import nl.rug.search.odr.ws.dto.ProjectOverviewDTO;
 
@@ -10,15 +10,15 @@ import nl.rug.search.odr.ws.dto.ProjectOverviewDTO;
  * @author Ben Ripkens <bripkens.dev@gmail.com>
  */
 public class SampleClient {
-    private static final String URL = "http://www.decisionrepository.com",
+    private static final String URL = "https://www.decisionrepository.com",
             AUTH_EMAIL = "test@decisionrepository.com",
             AUTH_PASSWORD = "12345",
             FENCE = "#################################################";
 
-    private final WebServiceFacade wsf;
+    private final AuthorizedWebServiceFacade wsf;
     
     public SampleClient() {
-        wsf = new WebServiceFacade(URL, AUTH_EMAIL, AUTH_PASSWORD);
+        wsf = new AuthorizedWebServiceFacade(URL, AUTH_EMAIL, AUTH_PASSWORD);
     }
     
     public void printDecisionStates() throws IOException {
@@ -44,9 +44,9 @@ public class SampleClient {
     }
     
     public static void main(String[] args) throws IOException {
+        
         SampleClient client = new SampleClient();
         client.printDecisionStates();
         client.printAccessibleProjects();
     }
-    
 }
